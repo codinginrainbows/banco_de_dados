@@ -1,0 +1,38 @@
+Aqui está a lista completa novamente:
+
+1. Listar todos os clientes: SELECT * FROM clientes;
+2. Listar clientes que começam com "I": SELECT * FROM clientes WHERE nome LIKE 'I%';
+3. Listar somente os primeiros 2 clientes que começam com "I": SELECT * FROM clientes WHERE nome LIKE 'I%' LIMIT 2;
+4. Sortear 2 clientes: SELECT * FROM clientes ORDER BY RAND() LIMIT 2;
+5. Listar somente clientes que não cadastraram endereços: SELECT * FROM clientes WHERE endereco IS NULL;
+6. Listar somente os clientes que moram no cassino: SELECT * FROM clientes WHERE endereco = 'cassino';
+7. Listar somente clientes com mais de 2 endereços cadastrados: SELECT * FROM clientes WHERE (SELECT COUNT(*) FROM enderecos WHERE enderecos.cliente_id = clientes.id) > 2;
+8. Listar pedidos feitos hoje: SELECT * FROM pedidos WHERE data = CURDATE();
+9. Listar pedidos feitos nas últimas 24 horas: SELECT * FROM pedidos WHERE data >= DATE_SUB(NOW(), INTERVAL 24 HOUR);
+10. Listar os itens de cada pedido: SELECT * FROM itens;
+11. Listar os itens + descrição dos produtos de um determinado pedido: SELECT itens.*, produtos.descricao FROM itens JOIN produtos ON itens.produto_id = produtos.id WHERE itens.pedido_id = <id_do_pedido>;
+12. Listar clientes e seus pedidos: SELECT clientes.*, pedidos.* FROM clientes JOIN pedidos ON clientes.id = pedidos.cliente_id;
+13. Listar clientes, seus pedidos e os itens de cada pedido: SELECT clientes.*, pedidos.*, itens.* FROM clientes JOIN pedidos ON clientes.id = pedidos.cliente_id JOIN itens ON pedidos.id = itens.pedido_id;
+14. Listar a quantidade média por item (de todos os pedidos): SELECT AVG(quantidade) FROM itens;
+15. Calcular o total de cada pedido: SELECT pedido_id, SUM(total) FROM itens GROUP BY pedido_id;
+16. Listar somente os pedidos feitos na última semana: SELECT * FROM pedidos WHERE data >= DATE_SUB(NOW(), INTERVAL 7 DAY);
+17. Listar somente os pedidos feitos hoje (hoje genérico): SELECT * FROM pedidos WHERE data = CURDATE();
+18. Listar os pedidos (formatando as datas em dd/mm/yyyy): SELECT DATE_FORMAT(data, '%d/%m/%Y') FROM pedidos;
+19. Retornar somente o primeiro nome de cada cliente: SELECT SUBSTRING_INDEX(nome, ' ', 1) FROM clientes;
+20. Retornar os nomes em maiúsculo (de cada cliente): SELECT UPPER(nome) FROM clientes;
+21. Retornar clientes maiores de 18 anos: SELECT * FROM clientes WHERE idade > 18;
+22. Qual a média etária de clientes: SELECT AVG(idade) FROM clientes;
+23. Gasto médio de clientes maiores de 18: SELECT AVG(total) FROM pedidos JOIN clientes ON pedidos.cliente_id = clientes.id WHERE clientes.idade > 18;
+24. Quais produtos nunca foram item? (nunca participaram de um pedido): SELECT * FROM produtos WHERE id NOT IN (SELECT produto_id FROM itens);
+25. Qual produto apareceu mais vezes nos pedidos (qual pedido vendeu mais)? Se existir empate, mostrar todos os produtos "empatados" em 1º lugar: SELECT produto_id, COUNT(*) AS quantidade FROM itens GROUP BY produto_id ORDER BY quantidade DESC LIMIT 1;
+26. Atualizar as datas para 7 dias atrás: UPDATE pedidos SET data = DATE_SUB(data, INTERVAL 7 DAY);
+27. Mostrar clientes que realizaram pedidos sem repetir clientes: SELECT DISTINCT clientes.* FROM clientes JOIN pedidos ON clientes.id = pedidos.cliente_id;
+28. Mostrar o nome do cliente e seu bairro. Caso o bairro esteja em branco, mostrar a rua: SELECT clientes.nome, IF(clientes.bairro != '', clientes.bairro, clientes.rua) AS endereco FROM clientes;
+29. Mostrar o nome + email para clientes com id < 10 e nome + cpf para id >= 10: SELECT CASE WHEN id < 10 THEN CONCAT(nome, ' ', email) ELSE CONCAT(nome, ' ', cpf) END AS informacao FROM clientes;
+30. Exibir o produto mais vendido/menos vendido: SELECT produto_id, SUM(quantidade) AS total_vendido FROM itens GROUP BY produto_id ORDER BY total_vendido DESC/ASC LIMIT 1;
+31. Pedidos entregues no mesmo dia: SELECT * FROM pedidos WHERE data_entrega = data;
+32. Clientes que mais fizeram pedidos: SELECT clientes.id, clientes.nome, COUNT(pedidos.id) AS total_pedidos FROM clientes JOIN pedidos ON clientes.id = pedidos.cliente_id GROUP BY clientes.id ORDER BY total_pedidos DESC;
+33. Clientes que não fizeram nenhum pedido: SELECT * FROM clientes WHERE id NOT IN (SELECT cliente_id FROM pedidos);
+34. Clientes com mais de 2 endereços cadastrados: SELECT * FROM clientes WHERE (SELECT COUNT(*) FROM enderecos WHERE enderecos.cliente_id = clientes.id) > 2;
+35. Clientes que ainda não receberam nenhum pedido (sem entrega): SELECT * FROM clientes WHERE id NOT IN (SELECT cliente_id FROM pedidos);
+36. Clientes que tiveram pedidos com entrega atrasada (entrega realizada, mas data da entrega != data do pedido): SELECT * FROM clientes WHERE id IN (SELECT cliente_id FROM pedidos WHERE data_entrega > data);
