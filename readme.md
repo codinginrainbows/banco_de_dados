@@ -1,4 +1,4 @@
-#Lista Cakebakery
+# Lista Cakebakery
 
 01. Listar todos os clientes
 02. Listar clientes que começam com "I"
@@ -37,7 +37,7 @@
 35. Clientes que ainda não receberam nenhum pedido (sem entrega)
 36. Clientes que tiveram pedidos com entrega atrasada (entrega realizada mas data da entrega != data do pedido)
 
-#Trabalho Medium
+# Trabalho Medium
 
 Construa Modelo Relacional e desenvolva algumas consultas SQL para um Portal para escritores de blogs (algo como Medium).
 
