@@ -1,14 +1,14 @@
 #Lista Cakebakery
 
-1. Listar todos os clientes
-2. Listar clientes que começam com "I"
-3. Listar somente os primeiros 2 clientes que começam com "I"
-4. Sortear 2 clientes
-5. Listar somente clientes que não cadastraram endereços
-6. Listar somente os clientes que moram no cassino
-7. Listar somente clientes com mais de 2 endereços cadastrados
-8. Listar pedidos feitos hoje
-9. Listar pedidos feitos nas últimas 24h
+01. Listar todos os clientes
+02. Listar clientes que começam com "I"
+03. Listar somente os primeiros 2 clientes que começam com "I"
+04. Sortear 2 clientes
+05. Listar somente clientes que não cadastraram endereços
+06. Listar somente os clientes que moram no cassino
+07. Listar somente clientes com mais de 2 endereços cadastrados
+08. Listar pedidos feitos hoje
+09. Listar pedidos feitos nas últimas 24h
 10. Listar os itens de cada pedido
 11. Listar os itens + descrição dos produtos de um determinado pedido
 12. Listar clientes e seus pedidos

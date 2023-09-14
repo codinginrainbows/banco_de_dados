@@ -17,7 +17,6 @@ INSERT INTO cliente (cpf, nome, email) VALUES
 ('22222222222', 'MÁRCIO JOSUÉ RAMOS TORRES', 'marcio.torres@riogrande.ifrs.edu.br'),
 ('33333333333', 'CIBELE SINOTI', 'cibele.sinoti@riogrande.ifrs.edu.br');
 
-
 INSERT INTO cliente (cpf, nome, email) VALUES ('44444444444', 'BETITO', 'betito@riogrande.ifrs.edu.br');
 
 CREATE TABLE endereco (
