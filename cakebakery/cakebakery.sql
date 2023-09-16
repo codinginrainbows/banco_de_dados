@@ -45,6 +45,8 @@ CREATE TABLE pedido (
 INSERT INTO pedido (cliente_id) VALUES
 (1),
 (3);
+INSERT INTO pedido (data_hora, cliente_id) VALUES
+('10/09/2023', 2);
 
 CREATE TABLE entrega (
     id serial primary key,
